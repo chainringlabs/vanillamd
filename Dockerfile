@@ -7,7 +7,7 @@ USER root
 WORKDIR /app
 
 # Install with the lockfile first for better layer caching.
-COPY package.json package-lock.json ./
+COPY package.json package-lock.json .npmrc ./
 COPY server/package.json server/
 COPY client/package.json client/
 RUN npm ci
