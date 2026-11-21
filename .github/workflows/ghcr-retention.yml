@@ -5,30 +5,10 @@ on:
   schedule:
     - cron: "0 6 * * 1" # Mondays 06:00 UTC
 
-permissions:
-  packages: write
-  contents: read
+permissions: {}
 
 jobs:
   prune:
-    name: Prune old GHCR versions
-    runs-on: ubuntu-latest
-    concurrency:
-      group: ghcr-cleanup-${{ github.repository }}
-    steps:
-      # Tag-aware cleanup: keep the 5 most recent tagged versions for rollback,
-      # always preserve `latest`, and delete untagged manifests. dataaxiom
-      # understands multi-arch, cosign signatures, and attestation referrers,
-      # so deleting a parent manifest won't leave it tripping over already-gone
-      # children.
-      #
-      # NOTE: do NOT reintroduce actions/delete-package-versions with
-      # ignore-versions: '^latest$' — that regex matches the version *name*
-      # (the sha256 digest for container packages), never the tag, so it does
-      # not protect `latest` and will delete the manifest it points to.
-      - name: Prune GHCR (keep latest + 5 most recent tagged)
-        uses: dataaxiom/ghcr-cleanup-action@d52806a0dc70b430571a37da1fde39733ffd640f # v1.2.2
-        with:
-          keep-n-tagged: 5
-          exclude-tags: latest
-          delete-untagged: true
+    permissions:
+      packages: write
+    uses: chainringlabs/ci/.github/workflows/ghcr-retention.yml@0ef8076a7f4b6db0401731b8d8cd5794ebb9b1fc # v1.0.0
