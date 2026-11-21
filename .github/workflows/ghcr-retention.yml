@@ -11,4 +11,4 @@ jobs:
   prune:
     permissions:
       packages: write
-    uses: chainringlabs/ci/.github/workflows/ghcr-retention.yml@0ef8076a7f4b6db0401731b8d8cd5794ebb9b1fc # v1.0.0
+    uses: chainringlabs/ci/.github/workflows/ghcr-retention.yml@4a56829e5f1be54347d6708b0a86972e56d594ac # v1.3.0
