@@ -14,7 +14,7 @@ jobs:
     name: Supply chain
     permissions:
       contents: read
-    uses: chainringlabs/ci/.github/workflows/supply-chain.yml@f8888baa2af7a041fe6a5a11f8fe0be182357cc3 # v1.2.1
+    uses: chainringlabs/ci/.github/workflows/supply-chain.yml@4a56829e5f1be54347d6708b0a86972e56d594ac # v1.3.0
     with:
       node-version: "26"
     secrets: inherit
@@ -27,4 +27,4 @@ jobs:
       id-token: write
       attestations: write
       artifact-metadata: write
-    uses: chainringlabs/ci/.github/workflows/docker-publish.yml@05de2072e684885be22a0185e3d712d8082a15eb # v1.1.0
+    uses: chainringlabs/ci/.github/workflows/docker-publish.yml@4a56829e5f1be54347d6708b0a86972e56d594ac # v1.3.0
