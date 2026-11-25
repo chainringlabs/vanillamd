@@ -2,7 +2,7 @@
 
 # ---- Build stage: Chainguard node "dev" variant (npm + shell), paired to the
 # runtime image so the Node major matches (avoids native-ABI skew). ----
-FROM cgr.dev/chainguard/node:latest-dev@sha256:a303354ce725420223fa3cfa34c226828a3afb51b734061b384a36e80cb88023 AS build
+FROM cgr.dev/chainguard/node:latest-dev@sha256:b7a730b79774971de805ad0b79f4c12b18249f429e4ab829bff1104535d6370b AS build
 USER root
 WORKDIR /app
 
@@ -20,7 +20,7 @@ RUN npm run build && npm prune --omit=dev
 RUN mkdir -p /data-empty
 
 # ---- Runtime stage: hardened, distroless, non-root (uid 65532) ----
-FROM cgr.dev/chainguard/node:latest@sha256:acc647d9127c96746d8c75859e7f67d68400bb02b1ce7a004fd109b24c7f9dfb AS runtime
+FROM cgr.dev/chainguard/node:latest@sha256:aaf2e52e7deb1f4e5e51461ec480516ddd9ed4559188866f131145f93dee0f44 AS runtime
 ENV NODE_ENV=production \
     DATA_DIR=/data \
     PORT=8080 \
