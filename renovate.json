@@ -3,8 +3,11 @@
 	"extends": ["github>chainringlabs/renovate-config"],
 	"packageRules": [
 		{
-			"description": "Keep the Chainguard builder (node:latest-dev) and runtime (node:latest) in lockstep — one PR, never desynced, so the paired Node major / native ABI invariant holds.",
-			"matchDepNames": ["cgr.dev/chainguard/node"],
+			"description": "Keep the aged Chainguard builder (base/node-dev) and runtime (base/node) in lockstep — one PR, never desynced, so the paired Node major / native ABI invariant holds.",
+			"matchDepNames": [
+				"ghcr.io/chainringlabs/base/node",
+				"ghcr.io/chainringlabs/base/node-dev"
+			],
 			"groupName": "chainguard node base images",
 			"groupSlug": "chainguard-node-base"
 		}
