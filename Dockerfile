@@ -6,7 +6,7 @@
 
 # ---- Build stage: Chainguard node "dev" variant (npm + shell), paired to the
 # runtime image so the Node major matches (avoids native-ABI skew). ----
-FROM ghcr.io/chainringlabs/base/node-dev:aged@sha256:7a3fc49ffe9c0b0968674869a7bf6b9ad1d3cc490985399e1b999601fc896d44 AS build
+FROM ghcr.io/chainringlabs/base/node-dev:aged@sha256:b9ed639e17936247866afb17a9a3ae7ae1da7d6419fd8d72266860d31a244afa AS build
 USER root
 WORKDIR /app
 
@@ -24,7 +24,7 @@ RUN npm run build && npm prune --omit=dev
 RUN mkdir -p /data-empty
 
 # ---- Runtime stage: hardened, distroless, non-root (uid 65532) ----
-FROM ghcr.io/chainringlabs/base/node:aged@sha256:0e44a5a00b241314d60761ccb9e13d7af715947dd976400101089d099f3b50e1 AS runtime
+FROM ghcr.io/chainringlabs/base/node:aged@sha256:aaf2e52e7deb1f4e5e51461ec480516ddd9ed4559188866f131145f93dee0f44 AS runtime
 ENV NODE_ENV=production \
     DATA_DIR=/data \
     PORT=8080 \
